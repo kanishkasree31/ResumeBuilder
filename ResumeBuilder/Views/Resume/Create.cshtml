@@ -1,0 +1,207 @@
+﻿@model ResumeBuilder.Models.Resume
+
+@{
+    ViewData["Title"] = "Create Resume";
+}
+
+<style>
+    .resume-form {
+        max-width: 850px;
+        margin: 35px auto;
+    }
+
+    .form-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+        .form-header h1 {
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .form-header p {
+            color: #666;
+        }
+
+    .form-section {
+        background: white;
+        padding: 25px;
+        margin-bottom: 20px;
+        border: 1px solid #e2e2e2;
+        border-radius: 8px;
+    }
+
+        .form-section h4 {
+            font-size: 18px;
+            font-weight: 700;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+    .form-label {
+        font-weight: 600;
+    }
+
+    textarea {
+        resize: vertical;
+    }
+
+    .generate-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: 600;
+    }
+</style>
+
+<div class="resume-form">
+
+    <div class="form-header">
+        <h1>Create Your Resume</h1>
+        <p>Fill in your details to generate a professional resume.</p>
+    </div>
+
+    <form asp-action="Create" method="post">
+
+        <!-- PERSONAL DETAILS -->
+        <div class="form-section">
+            <h4>Personal Details</h4>
+
+            <div class="mb-3">
+                <label asp-for="FullName" class="form-label">Full Name</label>
+                <input asp-for="FullName" class="form-control"
+                       placeholder="Enter your full name" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Email Address</label>
+                <input asp-for="Email" class="form-control"
+                       placeholder="example@gmail.com" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Phone" class="form-label">Phone Number</label>
+                <input asp-for="Phone" class="form-control"
+                       placeholder="Enter your phone number" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="LinkedIn" class="form-label">LinkedIn Profile</label>
+                <input asp-for="LinkedIn" class="form-control"
+                       placeholder="https://linkedin.com/in/yourname" />
+            </div>
+
+            <div class="mb-0">
+                <label asp-for="GitHub" class="form-label">GitHub Profile</label>
+                <input asp-for="GitHub" class="form-control"
+                       placeholder="https://github.com/yourname" />
+            </div>
+        </div>
+
+
+        <!-- ABOUT ME -->
+        <div class="form-section">
+            <h4>About Me / Professional Summary</h4>
+
+            <textarea asp-for="AboutMe"
+                      class="form-control"
+                      rows="5"
+                      placeholder="Write a short professional summary about yourself..."></textarea>
+        </div>
+
+
+        <!-- EDUCATION -->
+        <div class="form-section">
+            <h4>Education</h4>
+
+            <textarea asp-for="Education"
+                      class="form-control"
+                      rows="5"
+                      placeholder="Degree&#10;College Name&#10;Year&#10;Percentage / CGPA"></textarea>
+        </div>
+
+
+        <!-- EXPERIENCE -->
+        <div class="form-section">
+            <h4>Experience</h4>
+
+            <textarea asp-for="Experience"
+                      class="form-control"
+                      rows="5"
+                      placeholder="Job title&#10;Company name&#10;Duration&#10;Responsibilities"></textarea>
+        </div>
+
+
+        <!-- INTERNSHIP -->
+        <div class="form-section">
+            <h4>Internship</h4>
+
+            <textarea asp-for="Internship"
+                      class="form-control"
+                      rows="5"
+                      placeholder="Internship role&#10;Company name&#10;Duration&#10;Work / responsibilities"></textarea>
+        </div>
+
+
+        <!-- PROJECTS -->
+        <div class="form-section">
+            <h4>Projects</h4>
+
+            <textarea asp-for="Projects"
+                      class="form-control"
+                      rows="6"
+                      placeholder="Project title&#10;Technologies used&#10;Project description"></textarea>
+        </div>
+
+
+        <!-- TECHNICAL SKILLS -->
+        <div class="form-section">
+            <h4>Technical Skills</h4>
+
+            <textarea asp-for="TechnicalSkills"
+                      class="form-control"
+                      rows="4"
+                      placeholder="Python, C, Java, SQL, HTML, CSS, ASP.NET Core..."></textarea>
+        </div>
+
+
+        <!-- SOFT SKILLS -->
+        <div class="form-section">
+            <h4>Soft Skills</h4>
+
+            <textarea asp-for="SoftSkills"
+                      class="form-control"
+                      rows="4"
+                      placeholder="Communication, Teamwork, Problem Solving, Adaptability..."></textarea>
+        </div>
+
+
+        <!-- CERTIFICATIONS -->
+        <div class="form-section">
+            <h4>Certifications</h4>
+
+            <textarea asp-for="Certifications"
+                      class="form-control"
+                      rows="5"
+                      placeholder="Certification name - Organization&#10;Certification name - Organization"></textarea>
+        </div>
+
+
+        <!-- BUTTON -->
+        <button type="submit" class="btn btn-dark generate-btn">
+            Generate Resume
+        </button>
+
+    </form>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
